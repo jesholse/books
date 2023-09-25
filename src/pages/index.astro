@@ -1,0 +1,55 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "../layouts/PageLayout.astro";
+import Pagination from "../components/Pagination.astro";
+import PaginationEntry from "../components/PaginationEntry.astro";
+const blogPosts = await getCollection("blog")
+console.log(blogPosts)
+---
+
+<PageLayout>
+	<div class="mx-auto  p-2 ">
+		<div class="mx-auto" style="max-width: 900px;">
+			<h1 class="text-3xl text-center pt-8">Välkommen</h1>
+			<div class="py-4 flex md:flex-row gap-4 flex-col items-center justify-center">
+				<div class="pr-12 rounded-lg text-black text-lg h-fit basis-3/6">
+					<h2 class="font-bold">Vad är detta?</h2>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum quos mollitia aliquid voluptas quaerat facilis aliquam, ratione culpa vero corrupti accusamus enim qui, fugit magni itaque quisquam? Ex, repellendus sunt.
+				</div>
+				<div class=" basis-2/6 h-fit">
+	
+					<img class=" h-96" src="/images/Reading glasses-bro.svg" alt="reading books" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mx-auto  p-2 py-10 ">
+		<div style="max-width:900px" class="mx-auto">
+			<h1 class="text-center pb-4 text-3xl py-4 text-black">Senaste inläggen</h1>
+			<div class="mx-auto flex md:flex-row flex-col flex-wrap ">
+			{blogPosts.map((post, i)=>(
+				i > 2 ? null : 	<div class="basis-full p-2"><PaginationEntry 
+				title={post.data.title} 
+				author={post.data.author} 
+				slug={post.slug } 
+				date={"2022-03-02"}>
+			</PaginationEntry></div>
+			))}
+			</div>
+		</div>
+	</div>
+		<div style="max-width: 1200px;" class="mx-auto  p-2">
+		<div class="">
+			<h1 class="text-3xl text-center py-4">Välkommen</h1>
+			<div class="py-4 flex md:flex-row flex-col gap-4">
+				<div class="p-6 text-black text-lg">
+					<h2 class="font-bold">Vad är detta?</h2>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum quos mollitia aliquid voluptas quaerat facilis aliquam, ratione culpa vero corrupti accusamus enim qui, fugit magni itaque quisquam? Ex, repellendus sunt.
+				</div>
+				<div class="p-6 bg-sky-100 text-lg">
+					Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam vel recusandae repudiandae voluptatum nisi! Odio molestiae iure necessitatibus, eum veritatis, reprehenderit mollitia fugit perspiciatis voluptatem, non impedit? Officiis, aliquam excepturi!
+				</div>
+			</div>
+		</div>
+	</div>
+</PageLayout>

@@ -1,0 +1,19 @@
+---
+import Header from "../components/Header.astro";
+import { ViewTransitions } from "astro:transitions";
+---
+
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <ViewTransitions></ViewTransitions>
+</head>
+<body class="h-screen">
+    <Header></Header>
+    <slot></slot>
+    <footer></footer>
+</body>
+</html>

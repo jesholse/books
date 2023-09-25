@@ -1,0 +1,27 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+import type { GetStaticPaths } from "astro";
+import { getCollection, getEntry } from "astro:content";
+import Pagination from "../../components/Pagination.astro";
+ export const getStaticPaths = (async () => {
+        const entires = await getCollection("blog")
+    return entires.map((entry)=>( {
+        params: {slug: entry.slug}, props: {entry}
+    }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props
+const {Content} = await entry.render()
+console.log(entry.slug)
+---
+<PageLayout>
+        <div>
+        <article  style="width: 900px;" class="mx-auto p-4 bg-white" >
+            <h1 class="text-3xl mx-auto" transition:name={entry.slug}>{entry.data.title}</h1>
+             <img class="my-10 mx-auto" transition:name={`image-${entry.slug}`} src="https://cdn.vectorstock.com/i/preview-1x/35/52/placeholder-rgb-color-icon-vector-32173552.jpg" alt={entry.slug}/>
+             <div class="text-xl">
+                <Content/>
+             </div>
+        </article>
+        </div>
+</PageLayout>

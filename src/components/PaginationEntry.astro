@@ -1,0 +1,20 @@
+---
+const {title, author, date, slug} = Astro.props
+console.log(Astro.props)
+console.log(slug)
+---
+
+<article class=" p-4 rounded-lg  border-2 border-blue-50">
+    <div transition:name={`header-${slug}`} class=" text-black p-2 text-xl ">
+        <h1 transition:name={slug} ><a href={`/posts/${slug}`}>{title}</a></h1>
+    </div>
+    <div class="p-2 py-4 flex flex-row justify-center gap-8 items-start">
+        <img transition:name={`image-${slug}`} style="width: 100px" src="https://cdn.vectorstock.com/i/preview-1x/35/52/placeholder-rgb-color-icon-vector-32173552.jpg" alt={slug}/>
+        <div class="text-lg">
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia expedita doloremque repellendus voluptate unde illum nulla
+        </div>
+    </div>
+    <div class="p-2 text-sm">
+        by {author} at {date}
+    </div>
+</article>
