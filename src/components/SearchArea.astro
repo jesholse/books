@@ -1,0 +1,11 @@
+
+---
+const {query} = Astro.props
+const posts = await Astro.glob("../content/blog/*.md")
+---
+
+{
+    posts.map((post)=>(
+        <div set:html={post.compiledContent()}></div>
+    ))
+}

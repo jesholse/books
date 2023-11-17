@@ -2,18 +2,15 @@
 const {title, author, date, slug} = Astro.props
 ---
 
-<article class=" p-2">
-    <div class="py-4 flex flex-col justify-center gap-4  entry-content">
-        <img class="rounded-2xl w-full mx-auto" transition:name={`image-${slug}`} src="https://images.unsplash.com/photo-1498855926480-d98e83099315?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt={slug}/>
-        <div class=" text-black text-2xl font-medium ">
-            <h1 transition:name=`title-${slug}` >{title}</h1>
-        </div>
+<article class=" p-4 py-8 flex flex-col  gap-4  entry-content max-w-3xl mx-auto">
+    <div class=" text-black text-2xl font-medium"  >
+        <h1 transition:name=`title-${slug}` >{title}</h1>
+    </div>
         <div transition:name=`excerpt-${slug}` class="text-md excerpt line-clamp-3">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia expedita doloremque repellendus voluptate unde illum nulla. 
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia expedita doloremque repellendus voluptate unde illum nulla.
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia expedita doloremque repellendus voluptate unde illum nulla.
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quia expedita doloremque repellendus voluptate unde illum nulla.
         </div>
-        <a transition:name=`button-${slug}` href={`/posts/${slug}`} class="border-2 rounded-lg p-1 px-2 w-fit border-purple-600 text-purple-600">Läs mer</a>
-    </div>
+        <a transition:name=`button-${slug}` href={`/posts/${slug}`} class="border-2 rounded-lg p-1 px-2 border-purple-600 text-purple-600 w-fit">Läs mer</a>
 </article>

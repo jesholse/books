@@ -1,5 +1,5 @@
 ---
-title: Tankar på nattgammal is
+title: Lorem ipsum
 ---
 
 # Hello

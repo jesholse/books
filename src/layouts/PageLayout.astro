@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import { ViewTransitions } from "astro:transitions";
+import Footer from "../components/Footer.astro";
 ---
 
 <!DOCTYPE html>
@@ -9,11 +10,16 @@ import { ViewTransitions } from "astro:transitions";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script>
     <ViewTransitions></ViewTransitions>
+    <script is:inline>
+        document.addEventListener("astro:page-load", () => {
+            htmx.process(document.body);
+        });
+    </script>
 </head>
 <body class="h-screen">
     <Header></Header>
     <slot></slot>
-    <footer></footer>
 </body>
 </html>

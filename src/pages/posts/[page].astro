@@ -1,63 +1,45 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { getCollection, getEntry } from "astro:content";
-import PaginationEntry from "../../components/PaginationEntry.astro";
-import Pagination from "../../components/Pagination.astro";
 import PageLayout from "../../layouts/PageLayout.astro";
-
+import ArchiveEntry from "../../components/ArchiveEntry.astro";
  export const getStaticPaths = (async ({paginate}) => {
     const blogPosts = await getCollection("blog")
     return paginate(blogPosts, {pageSize: 4});
 }) satisfies GetStaticPaths;
 const {page} = Astro.props
-console.log(page)
 ---
 
 <PageLayout>
     	<div class="mx-auto  p-2 ">
-		<div class="mx-auto" style="max-width: 900px;">
-			<h1 class="text-3xl text-center pt-8">Arkiv</h1>
-			<div class="py-4 mt-10 flex md:flex-row gap-4 flex-col items-center justify-center">
-				<div class="pr-10 rounded-lg text-black text-lg h-fit basis-full">
+		<div class="mx-auto md:max-w-6xl">
+			<h1 class="text-3xl text-center pt-8">Arkiv sida {page.currentPage}</h1>
+<!-- 			<div class="py-4 mt-10 flex md:flex-row gap-4 flex-col items-center justify-center">
+				<div class="pr-10 rounded-lg text-black text-lg h-fit basis-3/6 md:px-0 px-6">
 					<h2 class="font-bold">Lorem ipsum dolor</h2>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. 
 				</div>
 				<div class=" basis-2/6 h-fit">
+					<img class=" h-96" src="/images/Bibliophile-rafiki.svg" alt="reading books" />
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
-    <div class=" h-fit py-4">
-        <div class="mx-auto flex md:flex-row flex-col flex-wrap " style="max-width: 900px;">
-        <div class="p-2 flex flex-row justify-between basis-full">
-            <div class="w-fit p-2 rounded-lg ">
-                {page.currentPage}/{page.lastPage}
-            </div>
-            <div class="flex flex-row gap-2">
-                {page.url.prev ? <a class="block bg-blue-400 text-white p-2 rounded-lg" href={page.url.prev}>Previous</a> : null}
-                {page.url.next ? <a class="block bg-blue-400 text-white p-2 rounded-lg" href={page.url.next}>Next</a> : null} 
-            </div>
-         </div>
+        <div class="mx-auto flex md:flex-row flex-col flex-wrap md:max-w-6xl">
         {page.data.map((post)=> (
-            <div class="basis-full p-2">
-            <PaginationEntry 
+            <ArchiveEntry 
                 title={post.data.title} 
                 author={post.data.author} 
                 slug={post.slug } 
                 date={"2022-03-02"}>
-            </PaginationEntry>
-            </div>
+            </ArchiveEntry>
                 )
             )}
-        <div class="p-2 flex flex-row justify-between basis-full">
-            <div class="w-fit p-2 rounded-lg ">
-                {page.currentPage}/{page.lastPage}
-            </div>
+        <div class="p-2 flex flex-row justify-center w-full">
             <div class="flex flex-row gap-2">
-                {page.url.prev ? <a class="block bg-blue-400 text-white p-2 rounded-lg" href={page.url.prev}>Previous</a> : null}
-                {page.url.next ? <a class="block bg-blue-400 text-white p-2 rounded-lg" href={page.url.next}>Next</a> : null} 
+                {page.url.prev ? <a class="block bg-purple-500 text-white p-2 rounded-lg" href={page.url.prev}>Previous</a> : null}
+                {page.url.next ? <a class="block bg-purple-500 text-white p-2 rounded-lg" href={page.url.next}>Next</a> : null} 
             </div>
          </div>
         </div>
-    </div>
 </PageLayout>
