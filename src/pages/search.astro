@@ -5,7 +5,7 @@ import PageLayout from "../layouts/PageLayout.astro";
 <PageLayout>
 <div class="mx-auto max-w-3xl md:p-0 p-2">
     <h1 class="text-3xl text-center pt-8">Sök</h1>
-    <input class="p-2 border-2 my-8 w-full" name="search" type="search" placeholder="Sök" hx-trigger="input changed delay:500ms, search" hx-post="/api/posts" hx-target="#target" hx-indicator="#target"/>
+    <input class="p-2 border-2 my-8 w-full" name="search" type="search" placeholder="Sök" hx-trigger="input changed delay:500ms, search" hx-post="https://jolly-granita-4e8b2d.netlify.app/api/posts" hx-target="#target" hx-indicator="#target"/>
     <div transition:name="search" transition:persist id="target"></div>
 </div>
 <!--<SearchArea></SearchArea>-->
