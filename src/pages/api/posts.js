@@ -9,12 +9,11 @@ const blogPosts = await getCollection("blog");
     })
   );
 } */
-
+export const prerender = false;
 export async function POST({ params, request }) {
   const data = await request.formData()
   const query = data.get("search")
   const sorted = blogPosts.filter(post => post.data.title.includes(query))
-  
   return new Response(sorted.map((post)=>{
        return `<article class=" p-4  bg-slate-50 rounded-2xl ">
        <div class=" text-black text-2xl font-medium">
