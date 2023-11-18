@@ -2,13 +2,13 @@
 import { getCollection } from "astro:content";
 import PaginationEntry from "../../components/PaginationEntry.astro";
 const blogPosts = await getCollection("blog");
-export async function GET({ params, request }) {
+/* export async function GET({ params, request }) {
   return new Response(
     JSON.stringify({
       data: blogPosts,
     })
   );
-}
+} */
 
 export async function POST({ params, request }) {
   const data = await request.formData()
